@@ -38,7 +38,7 @@ type Comment = {
 };
 
 type Props = {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 };
 
 const PostDetail = async ({ params }: Props) => {
@@ -46,9 +46,9 @@ const PostDetail = async ({ params }: Props) => {
     const users: User[] = await fetchAllUsers();
     const comments: Comment[] = await fetchAllComments();
 
-    const post = posts.find((p) => p.id === Number(params.id));
-    const user = users.find((u) => u.id === Number(params.id));
-    const comment = comments.find((c) => c.id === Number(params.id));
+    const post = posts.find(async (p) => p.id === Number((await params).id));
+    const user = users.find(async (u) => u.id === Number((await params).id));
+    const comment = comments.find(async (c) => c.id === Number((await params).id));
 
     if (!post) {
         return <div className="text-center text-red-500">Post not found.</div>;
