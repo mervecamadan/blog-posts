@@ -46,7 +46,7 @@ const Header: React.FC = () => {
 
     return (
         <div className="bg-black text-[#F5F3F0] px-8 py-4 flex justify-between items-center z-20 fixed top-0 left-0 w-full">
-            <div className="text-xl font-bold">
+            <div className="text-lg font-bold">
                 <Link href="/">Posts - Docs</Link>
             </div>
 
